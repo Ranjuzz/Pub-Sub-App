@@ -54,9 +54,9 @@ function checkAndCommit(isTimeout = false) {
   const shouldCommit = 
     (currentcon === con.atleast_n && preparedParticipants.size >= nValue) ||
     (currentcon === con.atmost_n && preparedParticipants.size <= nValue) ||
-    (currentcon === con.all_prep && preparedParticipants.size === participants.size);
+    (currentcon === con.all_prep && preparedParticipants.size >0);
 //  after condotion satisfaction i go on to commiting phase
-  if (shouldCommit) {
+  if (shouldCommit && isTimeout) {
     console.log('Committing...');
     preparedParticipants.forEach(p => p.write(`COMMIT:${currentTransaction}\n`));
     console.log('Transaction committed successfully.');
@@ -103,7 +103,7 @@ function promptconf() {
 
 function promptTransac() {
   if (!tP) {
-    rl.question('Enter transaction\n("con" to change, "exit" to quit): ', (input) => {
+    rl.question('Enter message\n("con" to change, "exit" to quit): \n', (input) => {
             if (input.toLowerCase() === 'exit') return rl.close();
             if (input.toLowerCase() === 'con') return promptconf();
       startTransaction(input);
