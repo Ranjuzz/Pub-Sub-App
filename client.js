@@ -22,14 +22,13 @@ const rl = createInterface({
 function askQuestion(query, timeout = 9000) {
     return new Promise(resolve => {
       const timer = setTimeout(() => {
-        rl.close();
         resolve('no'); 
       }, timeout);
   
       rl.question(query, answer => {
         clearTimeout(timer);
         resolve(answer);
-        rl.close();
+        // rl.close();
       });
     });
   }

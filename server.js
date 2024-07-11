@@ -52,8 +52,8 @@ preparedParticipants.clear();
 function checkAndCommit(isTimeout = false) {
 //  in this i check whether the configuration is met or not 
   const shouldCommit = 
-    (currentcon === con.atleast_n && preparedParticipants.size >= nValue) ||
-    (currentcon === con.atmost_n && preparedParticipants.size <= nValue) ||
+    (currentcon === con.atleast_n && preparedParticipants.size >= N) ||
+    (currentcon === con.atmost_n && preparedParticipants.size <= N) ||
     (currentcon === con.all_prep && preparedParticipants.size >0);
 //  after condotion satisfaction i go on to commiting phase
   if (shouldCommit && isTimeout) {
